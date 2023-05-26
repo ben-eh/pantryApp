@@ -1,0 +1,10 @@
+POST http://localhost:3001/
+content-type: application/json
+
+{
+    "name": "carrots"
+}
+
+###
+
+https://swapi.dev/api/
