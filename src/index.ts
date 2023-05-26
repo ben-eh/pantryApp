@@ -36,10 +36,22 @@ const addIngredient = async (request: Request, response: Response, next: any) =>
 	FileHelper.writeStringToFile('src/ingredients.json', ingredientsString);
 }
 
+const deleteIngredient = async (request: Request, response: Response, next: any) => {
+	const id = request.body.id;
+	console.log(id);
+	let ingredientsString = await FileHelper.readStringFromFile('src/ingredients.json')
+	const ingredients = JSON.parse(ingredientsString);
+	delete ingredients[id];
+	console.log(ingredients);
+	ingredientsString = JSON.stringify(ingredients);
+	FileHelper.writeStringToFile('src/ingredients.json', ingredientsString);
+}
+
 
 router.get('/', getAllIngredients);
 router.get('/:id', getSingleIngredient);
 router.post('/', addIngredient);
+router.post('/:id', deleteIngredient);
 
 app.use(express.json());
 app.use('/', router);
