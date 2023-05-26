@@ -2,9 +2,18 @@ POST http://localhost:3001/
 content-type: application/json
 
 {
-    "name": "carrots"
+    "name": "beans"
 }
+
+### Get all ingredients
+
+http://localhost:3001/
 
 ###
 
-https://swapi.dev/api/
+POST http://localhost:3001/:id
+content-type: application/json
+
+{
+    "id": "8dcf73e7-597e-4cfc-9b48-b5ec0e7269fa"
+}
