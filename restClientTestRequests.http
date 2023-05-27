@@ -1,19 +1,22 @@
+### Add ingredient
+
 POST http://localhost:3001/
 content-type: application/json
 
 {
-    "name": "beans"
+    "name": "relish",
+    "category": "condiment"
 }
 
 ### Get all ingredients
 
 http://localhost:3001/
 
-###
+### Delete ingredient
 
 POST http://localhost:3001/:id
 content-type: application/json
 
 {
-    "id": "8dcf73e7-597e-4cfc-9b48-b5ec0e7269fa"
+    "id": "f9f86b5b-2017-4be9-b5ab-6a0e66079a3a"
 }

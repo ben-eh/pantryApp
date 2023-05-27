@@ -14,26 +14,45 @@ const getAllIngredients = (request: Request, response: Response, next: any) => {
 }
 
 const getSingleIngredient = (request: Request, response: Response, next: any) => {
+	if (!request.params.id) {
+
+	}
 	const id = request.params.id;
 	// console.log(id);
 	response.send(ingredients[id])
 }
 
 const addIngredient = async (request: Request, response: Response, next: any) => {
-	// auto-generate ID
-	const id = uuidv4();
-	// get name from user via Request
-	const name = request.body.name;
-	// add a Ingredient property to the ingredients.json DB
-	let ingredientsString = await FileHelper.readStringFromFile('src/ingredients.json')
-	const ingredients = JSON.parse(ingredientsString);
-	const newIngredient = {
-		id: id,
-		name: name
+	// check to make sure body has 'name' property
+	if (!request.body.name || !request.body.category) {
+		return response.status(500).json({ error: 'Failed to add ingredient, make sure all fields are present.' });
 	}
-	ingredients[id] = newIngredient;
-	ingredientsString = JSON.stringify(ingredients);
-	FileHelper.writeStringToFile('src/ingredients.json', ingredientsString);
+	// auto-generate ID
+	try {
+		const id = uuidv4();
+		// get name and category via Request
+		const name = request.body.name.toLowerCase();
+		const category = request.body.category.toLowerCase();
+		let ingredientsString = await FileHelper.readStringFromFile('src/ingredients.json')
+		const ingredients = JSON.parse(ingredientsString);
+		// test for duplicate entries
+		for (const key in ingredients) {
+			if (ingredients[key]["name"] == name) {
+				return response.status(500).json({ error: 'Failed to add ingredient - duplicate item' });			
+			}
+		}
+		const newIngredient = {
+			id: id,
+			name: name,
+			category: category
+		}
+		ingredients[id] = newIngredient;
+		ingredientsString = JSON.stringify(ingredients);
+		FileHelper.writeStringToFile('src/ingredients.json', ingredientsString);
+		response.status(200).json({ message: 'Ingredient added successfully.' });
+	} catch (error) {
+		response.status(500).json({ error: 'Failed to add ingredient.' });
+	}
 }
 
 const deleteIngredient = async (request: Request, response: Response, next: any) => {
