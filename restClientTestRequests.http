@@ -4,7 +4,7 @@ POST http://localhost:3001/
 content-type: application/json
 
 {
-    "name": "relish",
+    "name": "KeTchup",
     "category": "condiment"
 }
 
@@ -18,5 +18,5 @@ POST http://localhost:3001/:id
 content-type: application/json
 
 {
-    "id": "f9f86b5b-2017-4be9-b5ab-6a0e66079a3a"
+    "id": "4b0fdf81-68ac-4106-983c-53502ea5a265"
 }

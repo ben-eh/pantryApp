@@ -57,15 +57,20 @@ const addIngredient = async (request: Request, response: Response, next: any) =>
 
 const deleteIngredient = async (request: Request, response: Response, next: any) => {
 	const id = request.body.id;
-	console.log(id);
 	let ingredientsString = await FileHelper.readStringFromFile('src/ingredients.json')
 	const ingredients = JSON.parse(ingredientsString);
-	delete ingredients[id];
-	console.log(ingredients);
-	ingredientsString = JSON.stringify(ingredients);
-	FileHelper.writeStringToFile('src/ingredients.json', ingredientsString);
+	if (!request.body.id || !ingredients.hasOwnProperty(id)) {
+		return response.status(406).json({ error: 'No ID provided, or it is blank or does not exist in the database.' });
+	}
+	try {
+		delete ingredients[id];
+		ingredientsString = JSON.stringify(ingredients);
+		FileHelper.writeStringToFile('src/ingredients.json', ingredientsString);
+		response.status(200).json({ message: 'Ingredient deleted successfully.' });		
+	} catch (error) {
+		response.status(500).json({ error: 'Failed to delete ingredient.' });
+	}
 }
-
 
 router.get('/', getAllIngredients);
 router.get('/:id', getSingleIngredient);
