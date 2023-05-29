@@ -1,22 +1,41 @@
 ### Add ingredient
-
-POST http://localhost:3001/
+POST http://localhost:3001/ingredients
 content-type: application/json
 
 {
-    "name": "KeTchup",
-    "category": "condiment"
+    "name": "mustard",
+    "category": "condiments"
 }
 
 ### Get all ingredients
-
-http://localhost:3001/
+http://localhost:3001/ingredients/
 
 ### Delete ingredient
-
-POST http://localhost:3001/:id
+POST http://localhost:3001/ingredients/:id
 content-type: application/json
 
 {
     "id": "4b0fdf81-68ac-4106-983c-53502ea5a265"
+}
+
+### Get All Recipes and Their Ingredients
+http://localhost:3001/recipes/
+
+### Add recipe
+POST http://localhost:3001/recipes/
+content-type: application/json
+
+{
+    "name": "Hot Dogs",
+    "steps": [
+        "grill hot dogs",
+        "warm or toast buns",
+        "top with ketchup and mustard"
+    ],
+    "ingredients": [
+        "fab94b7b-599f-406e-a1c7-7e60073abd65",
+        "f655d36a-6c8a-4a8a-b74d-582fb54cc31c",
+        "cf661dc7-074e-4d8e-9a6c-b4f7742d8f75",
+        "1caf4b0a-6018-44d9-b702-24da2f149f05"
+    ]
 }

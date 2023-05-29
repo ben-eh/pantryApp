@@ -1,8 +1,15 @@
 export type Ingredient = {
-	id: number,
-	name: string
+	id: string,
+	name: string,
+	category: string
 }
 
 export type IngredientMap = {
 	[id: string]: Ingredient
 }
+
+// export type Category = {
+// 	id: string,
+// 	name: string
+// }
+
