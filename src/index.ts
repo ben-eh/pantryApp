@@ -138,7 +138,7 @@ const getIngredient = async (id:string):Promise<Ingredient> => {
 	return ingredients[id];
 }
 
-	ingredientsRouter.get('/', getAllIngredients);
+ingredientsRouter.get('/', getAllIngredients);
 ingredientsRouter.get('/:id', getSingleIngredient);
 ingredientsRouter.post('/', addIngredient);
 ingredientsRouter.post('/:id', deleteIngredient);
