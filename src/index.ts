@@ -3,6 +3,7 @@ import {v4 as uuidv4} from 'uuid';
 import { Ingredient, IngredientMap } from './types/ingredients';
 import { Recipe, RecipeMap } from './types/recipes';
 import FileHelper from './utils/file-helper';
+import path from 'path';
 
 const app = express();
 const ingredientsRouter = express.Router();
@@ -137,8 +138,7 @@ const getIngredient = async (id:string):Promise<Ingredient> => {
 	return ingredients[id];
 }
 
-
-ingredientsRouter.get('/', getAllIngredients);
+	ingredientsRouter.get('/', getAllIngredients);
 ingredientsRouter.get('/:id', getSingleIngredient);
 ingredientsRouter.post('/', addIngredient);
 ingredientsRouter.post('/:id', deleteIngredient);
@@ -149,6 +149,7 @@ recipesRouter.post('/', addRecipe);
 app.use(express.json());
 app.use('/ingredients', ingredientsRouter);
 app.use('/recipes', recipesRouter);
+app.use('/',express.static(__dirname + '/public'));
 
 app.listen('3001', () => {
 	console.log('the server is running');

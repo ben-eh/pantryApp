@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "outDir": "public",
+    "strict": true
+  },
+  "include": [
+    "src/index.ts",
+    "src/types/ingredients.ts",
+    "src/types/recipes.ts"
+  ],
+  "exclude": [
+    "public"
+  ]
+}

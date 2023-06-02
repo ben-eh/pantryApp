@@ -3,8 +3,8 @@ POST http://localhost:3001/ingredients
 content-type: application/json
 
 {
-    "name": "mustard",
-    "category": "condiments"
+    "name": "milk",
+    "category": "dairy"
 }
 
 ### Get all ingredients
@@ -26,16 +26,14 @@ POST http://localhost:3001/recipes/
 content-type: application/json
 
 {
-    "name": "Hot Dogs",
+    "name": "Mac n Cheese",
     "steps": [
-        "grill hot dogs",
-        "warm or toast buns",
-        "top with ketchup and mustard"
+        "boil pasta",
+        "make cheese sauce",
+        "mix"
     ],
     "ingredients": [
-        "fab94b7b-599f-406e-a1c7-7e60073abd65",
-        "f655d36a-6c8a-4a8a-b74d-582fb54cc31c",
-        "cf661dc7-074e-4d8e-9a6c-b4f7742d8f75",
-        "1caf4b0a-6018-44d9-b702-24da2f149f05"
+        "010d22aa-8129-43e7-941d-4a0ecb9ad68b",
+        "724dd25e-5d9c-4279-8eaf-c39a0ffd5362"
     ]
 }

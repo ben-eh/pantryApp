@@ -1,5 +1,4 @@
 import fs from 'fs';
-
 export default class FileHelper {
     static writeStringToFile = async (
         path: string,
