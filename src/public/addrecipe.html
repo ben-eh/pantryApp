@@ -16,39 +16,22 @@
 			</div>
 			<h2>Add your ingredients</h2>
 			<div id="addedIngredient">
-				<ul id="added-ingredients-list">
-					<li>
-						<button>Cheese</button>
-					</li>
-					<li>
-						<button>Milk</button>
-					</li>
-					<li>
-						<button>Honey</button>
-					</li>
-				</ul>
+				
 			</div>
 			<div id="addRecipeIngredients">
-				<div id="ingredientsFilter">
-					<input type="text" placeholder="search for ingredient"/>
+				<div>
+					<input type="text" placeholder="search for ingredient" id="ingredientsFilter"/>
 				</div>
-				<ul id="ingredients-list">
-					<li>
-						<button>Eggs</button>
-					</li>
-					<li>
-						<button>Eggplant</button>
-					</li>
-					<li>
-						<button>Eggos</button>
-					</li>
+				<ul id="ingredients-list-search">
 				</ul>
+				<div class="added-ingredients">
+					<h3>Added Ingredients</h3>
+					<ul id="added-ingredients-list">
+					</ul>
+				</div>
 			</div>
-			<div id="addedSteps">
-				<ol>
-					<li>wash your hands</li>
-					<li>boil potatoes</li>
-					<li>add milk</li>
+			<div>
+				<ol id="addedSteps">
 				</ol>
 			</div>
 			<div id="addRecipeSteps">
@@ -57,7 +40,7 @@
 			<button id="stepButton">Add Step</button>
 			<small>please note, you can just hit enter and it will add the step and allow you to add another one until all steps are added</small>
 			<br>
-			<button type="submit">submit</button>
+			<button type="submit" id="submit-button">submit</button>
 	</div>
 	<script src="recipes.js" type="text/javascript"></script>
 </body>

@@ -59,6 +59,7 @@ const addIngredient = async (request: Request, response: Response, next: any) =>
 }
 
 const addRecipe = async (request: Request, response: Response, next: any) => {
+	console.log(request.body);
 	if (!request.body.name || !request.body.steps || !request.body.ingredients) {
 		return response.status(400).json({ error: 'Failed to add recipe, make sure all fields are present.' });
 	}
