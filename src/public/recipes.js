@@ -99,7 +99,13 @@ const addRecipe = (e) => {
 }
 
 const postRecipe = (recipe) => {
-	axios.post("http://localhost:3001/recipes", recipe);
+	axios.post("http://localhost:3001/recipes",
+		recipe
+	).then((response) => {
+		alert('recipe added successfully');
+	}).catch((error) => {
+		alert(error);
+	});
 }
 
 window.addEventListener("load", onPageLoad);
