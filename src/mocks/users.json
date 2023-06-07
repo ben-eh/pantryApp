@@ -1,0 +1,16 @@
+{
+	"1": {
+		"id": "1",
+		"username": "benno",
+		"password": "zif",
+		"email": "bencalef@gmail.com",
+		"recipes": ["586166e8-0c87-410d-863c-35b07a0b3550", "028ef0d8-8114-47bc-89cc-6dd7e9cd693c"]
+	},
+	"2": {
+		"id": "2",
+		"username": "brando",
+		"password": "IGotBumped",
+		"email": "brandomenyes@gmail.com",
+		"recipes": ["028ef0d8-8114-47bc-89cc-6dd7e9cd693c"]
+	}	
+}

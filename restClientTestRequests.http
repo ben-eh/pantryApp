@@ -37,3 +37,15 @@ content-type: application/json
         "724dd25e-5d9c-4279-8eaf-c39a0ffd5362"
     ]
 }
+
+### Get all users
+http://localhost:3001/users/
+
+### Post request to authenticate user
+POST http://localhost:3001/users/authenticate
+content-type: application/json
+
+{
+	"username": "brando",
+	"password": "IGotBumped"
+}
