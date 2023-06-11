@@ -1,10 +1,10 @@
-import { Ingredient } from "./ingredients"
+import { IngredientQuantity } from "./ingredients"
 
 export type Recipe = {
 	id: string,
 	name: string,
 	steps: string[],
-	ingredients: string[],
+	ingredients: IngredientQuantity[],
 	// cuisine: string (ex. 'chinese', 'mexican', 'french'),
 	// time: (ex. '<10m', '10-30m')
 }

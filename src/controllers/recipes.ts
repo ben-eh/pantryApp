@@ -1,8 +1,28 @@
 import express, {Request, Response} from 'express';
 import {v4 as uuidv4} from 'uuid';
 import FileHelper from '../utils/file-helper';
-import { Ingredient, IngredientMap } from '../types/ingredients';
+import { FullIngredient, Ingredient, IngredientMap, IngredientQuantity } from '../types/ingredients';
 import { Recipe, RecipeMap } from '../types/recipes';
+
+export const getRecipe = async (request: Request, response: Response, next: any) => {
+	// get ID of recipe we want
+	const IDFromParams:string = request.params.id;
+
+	// read the recipe db file
+	const recipesString:string = await FileHelper.readStringFromFile('src/mocks/recipes.json');
+	const recipes:RecipeMap = JSON.parse(recipesString);
+	
+	// find recipe object we want to send to client
+	const recipe:Recipe = recipes[IDFromParams];
+
+	// retrieve ingredient quantity objects for recipe
+	const recipeIngredients:FullIngredient[] = await getRecipeFullIngredient(recipe.ingredients);
+
+	// create recipe to send to user
+	const recipesWithIngredients:any = recipe;
+	recipesWithIngredients.ingredients = recipeIngredients;
+	response.send(recipesWithIngredients);
+}
 
 export const getAllRecipes = async (request: Request, response: Response, next: any) => {
 	const recipesString:string = await FileHelper.readStringFromFile('src/mocks/recipes.json');
@@ -11,34 +31,38 @@ export const getAllRecipes = async (request: Request, response: Response, next: 
 	const recipesWithIngredients:any = {}
 	const promiseList = recipesArray.map(async (recipe) => {
 		// get all ingredients listed in each recipe
-		console.log('inside of map.');
-		const recipeIngredients:Ingredient[] = await getRecipeIngredients(recipe.ingredients);
-		recipesWithIngredients[recipe.id] = recipe;
-		recipesWithIngredients[recipe.id].ingredients = recipeIngredients;
-		// cleaner way to wite 86 and 87
-		// recipesWithIngredients[recipe.id] = {
-		// 	...recipe,
-		// 	ingredients:recipeIngredients
-		// }
+		const recipeIngredients:FullIngredient[] = await getRecipeFullIngredient(recipe.ingredients);
+		recipesWithIngredients[recipe.id] = {
+			...recipe,
+			ingredients:recipeIngredients
+		}
 	});
 	await Promise.all(promiseList);
 	response.send(recipesWithIngredients);
 	console.log('sent request to client.');
 }
 
-const getRecipeIngredients = async (ids:string[]):Promise<Ingredient[]> => {
-	const promiseList = ids.map(ingredientLoop);
-	return await Promise.all(promiseList);
-}
+const getRecipeFullIngredient = async (ingredients:IngredientQuantity[]):Promise<FullIngredient[]> => {
+	const ingredientsString = await FileHelper.readStringFromFile('src/mocks/ingredients.json');
+	const ingredientsMap = JSON.parse(ingredientsString);
+	const fullIngredients = ingredients.map((currentIngredient) => {
+		// find ingredient
+		const ingredient = ingredientsMap[currentIngredient.id];
+		
+		// combine ingredient with the ingredient quantity
+		const fullIngredient = {
+			...ingredient,
+			...currentIngredient
+		}
 
-const ingredientLoop = async (id:string):Promise<Ingredient> => {
-	return await getIngredient(id);
-}
+		// return the list of FullIngredients
+		return fullIngredient;
+	});
 
-const getIngredient = async (id:string):Promise<Ingredient> => {
-	const ingredientsString:string = await FileHelper.readStringFromFile('src/mocks/ingredients.json');
-	const ingredients:IngredientMap = JSON.parse(ingredientsString);
-	return ingredients[id];
+	return fullIngredients;
+
+	// const promiseList:Promise<IngredientQuantity>[] = ingredients.map(ingredientLoop);
+	// return await Promise.all(promiseList);
 }
 
 export const addRecipe = async (request: Request, response: Response, next: any) => {
@@ -49,11 +73,11 @@ export const addRecipe = async (request: Request, response: Response, next: any)
 	let recipesString = await FileHelper.readStringFromFile('src/mocks/recipes.json');
 	const recipes:RecipeMap = JSON.parse(recipesString);
 	try {
-		const id = uuidv4();
-		const name = request.body.name.toLowerCase();
-		const steps = request.body.steps;
-		const ingredients = request.body.ingredients;
-		const newRecipe = {
+		const id:string = uuidv4();
+		const name:string = request.body.name.toLowerCase();
+		const steps:string[] = request.body.steps;
+		const ingredients:IngredientQuantity[] = request.body.ingredients;
+		const newRecipe:Recipe = {
 			id: id,
 			name: name,
 			steps: steps,

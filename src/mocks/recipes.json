@@ -1,1 +1,17 @@
-{"586166e8-0c87-410d-863c-35b07a0b3550":{"id":"586166e8-0c87-410d-863c-35b07a0b3550","name":"waffles","steps":["toast","eat"],"ingredients":["f6d03ced-8ae8-4d9f-b54c-b606f9726a8a"]},"028ef0d8-8114-47bc-89cc-6dd7e9cd693c":{"id":"028ef0d8-8114-47bc-89cc-6dd7e9cd693c","name":"'murican hot dogs","steps":["boil hot dog","put in bun","add ketchup and mustard and enjoy"],"ingredients":["c51182d6-9304-4690-89b2-df4fad806e2a","ed29995d-04b4-4bb7-9626-3aa495c5e10a","b316064c-7ea8-4551-a727-2acbc3bdfe79"]}}
+{
+	"586166e8-0c87-410d-863c-35b07a0b3550": {
+		"id": "586166e8-0c87-410d-863c-35b07a0b3550",
+		"name": "waffles",
+		"steps": [
+			"toast",
+			"eat"
+		],
+		"ingredients": [
+			{
+				"id": "f6d03ced-8ae8-4d9f-b54c-b606f9726a8a",
+				"quantity": "1/4 cup",
+				"unitOfMeasure": "cup"
+			}
+		]
+	}
+}	
