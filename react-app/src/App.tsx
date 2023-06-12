@@ -1,81 +1,45 @@
-import { Typography, Paper, TextField, Button, Divider } from '@mui/material';
-import { useState } from 'react';
-import styled from 'styled-components';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/Login";
+import RegisterPage from "./pages/Register";
+import MyRecipesPage from "./pages/MyRecipes";
+import CreateRecipePage from "./pages/CreateRecipe";
+import useAuth, { AuthProvider } from "./hooks/useAuth";
 
-const Layout = styled.div`
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-const Header = styled.header`
-  background-color: lightskyblue;
-  padding: 1rem 3rem;
-  display: flex;
-  align-items: center;
-`;
-const Body = styled.main`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 3rem;
-`;
-const Form = styled(Paper)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
-`;
-const Title = styled.h2`
-  text-align: center;
-  margin-bottom: 1rem;
-`;
 
+const PublicStack = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' Component={LoginPage}/>
+        <Route path='/register' Component={RegisterPage}/>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+const UserStack = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' Component={MyRecipesPage}/>
+        <Route path='/create-recipe' Component={CreateRecipePage}/>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+const Router = () => {
+  const { user } = useAuth();
+
+  if (!user) return <PublicStack />;
+  return <UserStack />
+}
 
 function App() {
-
-  const [username, setUsername] = useState<string>();
-  const [password, setPassword] = useState<string>();
-
   return (
-    <Layout>
-      <Header>
-        <Typography variant='h4'>
-          Pantry App
-        </Typography>
-      </Header>
-      <Body>
-        <Form elevation={5}>
-          <Title>
-            Login
-          </Title>
-          <TextField 
-            placeholder='Username'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            style={{
-              marginBottom: '1rem',
-            }}
-          />
-          <TextField 
-            placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{
-              marginBottom: '1rem',
-            }}
-          />
-          <Button
-            variant='contained'>
-            Login
-          </Button>
-        </Form>
-      </Body>
-    </Layout>
+    <AuthProvider>
+      <Router />
+    </AuthProvider>
   );
 }
 
