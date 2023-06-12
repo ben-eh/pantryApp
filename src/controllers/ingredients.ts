@@ -1,7 +1,11 @@
 import express, {Request, Response} from 'express';
 import {v4 as uuidv4} from 'uuid';
 import FileHelper from '../utils/file-helper';
-import { Ingredient, IngredientMap } from '../types/ingredients';
+import { Ingredient, IngredientMap, measurementList } from '../types/ingredients';
+
+export const getMeasurements = (request: Request, response: Response, next: any) => {
+	response.send(measurementList);
+}
 
 export const getAllIngredients = async (request: Request, response: Response, next: any) => {
 	const ingredientsString = await FileHelper.readStringFromFile('src/mocks/ingredients.json');

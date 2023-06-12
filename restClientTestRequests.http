@@ -33,8 +33,16 @@ content-type: application/json
         "mix"
     ],
     "ingredients": [
-        "010d22aa-8129-43e7-941d-4a0ecb9ad68b",
-        "724dd25e-5d9c-4279-8eaf-c39a0ffd5362"
+			{
+				"id": "010d22aa-8129-43e7-941d-4a0ecb9ad68b",
+				"quantity": "2",
+				"unitOfMeasure": "dash"
+			},
+			{
+				"id": "724dd25e-5d9c-4279-8eaf-c39a0ffd5362",
+				"quantity": "50",
+				"unitOfMeasure": "g"
+			},
     ]
 }
 
@@ -49,3 +57,7 @@ content-type: application/json
 	"username": "brando",
 	"password": "IGotBumped"
 }
+
+### Get all measurements
+http://localhost:3001/ingredients/measurements/
+content-type: application/json
