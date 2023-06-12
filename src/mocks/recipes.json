@@ -1,1 +1,42 @@
-{"586166e8-0c87-410d-863c-35b07a0b3550":{"id":"586166e8-0c87-410d-863c-35b07a0b3550","name":"waffles","steps":["toast","eat"],"ingredients":[{"id":"f6d03ced-8ae8-4d9f-b54c-b606f9726a8a","quantity":"1/4 cup","unitOfMeasure":"cup"}]},"a006d00a-2990-4fc2-9868-ed91bf65bd87":{"id":"a006d00a-2990-4fc2-9868-ed91bf65bd87","name":"pasta salad","steps":["mix all","eat"],"ingredients":[{"id":"931b5592-a16e-4c44-bc92-d3f049832271","quantity":"250","unitOfMeasure":"mL"},{"id":"80b7309b-19d6-475a-8015-22e8d7576d76","quantity":"50","unitOfMeasure":"g"},{"id":"0d364497-d6f7-49f0-b912-f4255fec6da7","quantity":"1/2","unitOfMeasure":"cup"}]}}
+{
+	"586166e8-0c87-410d-863c-35b07a0b3550": {
+		"id": "586166e8-0c87-410d-863c-35b07a0b3550",
+		"name": "waffles",
+		"steps": [
+			"toast",
+			"eat"
+		],
+		"ingredients": [
+			{
+				"id": "f6d03ced-8ae8-4d9f-b54c-b606f9726a8a",
+				"quantity": "1/4",
+				"unitOfMeasure": "cup"
+			}
+		]
+	},
+	"a006d00a-2990-4fc2-9868-ed91bf65bd87": {
+		"id": "a006d00a-2990-4fc2-9868-ed91bf65bd87",
+		"name": "pasta salad",
+		"steps": [
+			"mix all",
+			"eat"
+		],
+		"ingredients": [
+			{
+				"id": "931b5592-a16e-4c44-bc92-d3f049832271",
+				"quantity": "250",
+				"unitOfMeasure": "mL"
+			},
+			{
+				"id": "80b7309b-19d6-475a-8015-22e8d7576d76",
+				"quantity": "50",
+				"unitOfMeasure": "g"
+			},
+			{
+				"id": "0d364497-d6f7-49f0-b912-f4255fec6da7",
+				"quantity": "1/2",
+				"unitOfMeasure": "cup"
+			}
+		]
+	}
+}
